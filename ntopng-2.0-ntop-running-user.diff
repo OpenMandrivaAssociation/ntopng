@@ -1,0 +1,26 @@
+diff --git a/include/ntop_defines.h b/include/ntop_defines.h
+index 521fe47..a774ffc 100644
+--- a/include/ntop_defines.h
++++ b/include/ntop_defines.h
+@@ -276,7 +276,7 @@
+ #define CONST_ALT_INSTALL_DIR        "/usr/share/ntopng"
+ #define CONST_ALT2_INSTALL_DIR       "/usr/local/share/ntopng"
+ #define CONST_HTTP_PREFIX_STRING     "@HTTP_PREFIX@"
+-#define CONST_DEFAULT_NTOP_USER      "nobody"
++#define CONST_DEFAULT_NTOP_USER      "ntopng"
+ #define CONST_TOO_EARLY              "(Too Early)"
+ #define CONST_HTTP_CONN              "http.conn"
+ #define CONST_LUA_OK                  1
+diff --git a/src/Utils.cpp b/src/Utils.cpp
+index 7481d2b..62034f7 100755
+--- a/src/Utils.cpp
++++ b/src/Utils.cpp
+@@ -328,7 +328,7 @@ void Utils::dropPrivileges() {
+   pw = getpwnam(username);
+ 
+   if(pw == NULL) {
+-    username = "anonymous";
++    username = "nobody";
+     pw = getpwnam(username);
+   }
+ 

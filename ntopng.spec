@@ -1,7 +1,7 @@
 Summary:	A next generation Network and traffic analyzer
 Name:		ntopng
 Version:	2.4
-Release:	1
+Release:	2
 License:	GPLv3
 Group:		Monitoring
 URL:		http://www.ntop.org
@@ -11,6 +11,7 @@ Source2:	ntopng.service
 Source3:	ntopng.sysconfig
 Source4:	ntopng.tmpfiles.d
 Patch0:		use-system-ndpi.patch
+Patch1:		ntopng-2.0-ntop-running-user.diff
 BuildRequires:	GeoIP-devel
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(hiredis)
@@ -36,7 +37,6 @@ Requires:	tcp_wrappers
 Requires:	rrdtool
 Requires:	geoip
 Requires:	redis
-Requires:	openssl-devel
 Obsoletes:	ntop < 5.0.1
 
 %description
@@ -68,7 +68,6 @@ ntopng feature highlights:
 * Report IP protocol usage sorted by protocol type.
 
 %prep
-
 %setup -q
 %apply_patches
 
@@ -129,7 +128,7 @@ install -m 0644 %{SOURCE4} %{buildroot}%{_tmpfilesdir}/%{name}.conf
 %post
 %_post_service ntopng
 %_create_ssl_certificate ntopng -b
-chown ntopng:ntopng %{_sysconfdir}/pki/tls/private/ntopng.pem
+chown %{name}:%{name} %{_sysconfdir}/pki/tls/private/ntopng.pem
 
 %tmpfiles_create %{_tmpfilesdir}/%{name}
 
