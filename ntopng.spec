@@ -69,7 +69,7 @@ ntopng feature highlights:
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 sed -i 's!/var/run/ntopng.pid!/var/run/ntopng/ntopng.pid!g' include/ntop_defines.h
 
