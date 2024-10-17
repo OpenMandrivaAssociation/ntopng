@@ -4,7 +4,7 @@ Version:	2.4
 Release:	2
 License:	GPLv3
 Group:		Monitoring
-URL:		http://www.ntop.org
+URL:		https://www.ntop.org
 Source0:	https://github.com/ntop/ntopng/archive/%{version}.tar.gz
 Source1:	ntopng.conf
 Source2:	ntopng.service
